@@ -1,28 +1,40 @@
 # chef-install
 
-[![CI State](https://github.com/actionshub/chef-install/workflows/release/badge.svg)](https://github.com/actionshub/chef-delivery)
+[![CI State](https://github.com/actionshub/kitchen-dokken/workflows/release/badge.svg)](https://github.com/actionshub/kitchen-dokken)
 
-A Github Action to install Chef on a build agent
+A Github Action to run Kitchen Dokken on your cookbooks
 
 Note you will need to accept the Chef license, you can find more information at <https://docs.chef.io/chef_license.html>
 
 ## Usage
 
 ```yaml
-name: delivery
+name: kitchen
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
-  delivery:
+  dokken:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['debian-8', 'debian-9', 'centos-7', 'fedora-latest', 'ubuntu-1604', 'ubuntu-1804']
+        suite: ['default']
+      fail-fast: false
 
     steps:
     - name: Check out code
       uses: actions/checkout@master
-    - name: install chef
-      uses: actionshub/chef-installl@master
+    - name: Install Chef
+      uses: actionshub/chef-install@master
+    - name: Dokken
+      uses: actionshub/kitchen-dokken@creation
+      env:
+        suite: ${{ matrix.suite }}
+        os: ${{ matrix.os }}
+        CHEF_LICENSE: accept-no-persist
+        KITCHEN_LOCAL_YAML: kitchen.dokken.yml
  ```
 
 ## Envrionment Variables
@@ -31,9 +43,5 @@ We support the following Environment Variables
 
 |name| default| description|
 |--- |------- |----------- |
-|channel| stable | Chef Channel to install, stable or current |
-|project | chef-workstation | Which product to install, see <https://docs.chef.io/install_omnibus.html> for the list |
-|version | latest | version to install |
-|omnitruckUrl| omnitruck.chef.io | which Omnitruck to use, default is Chef Official|
-
-By Changing the omnitruck Url you can also install Cinc projects
+|suite|  | the name of the suite to run |
+|os |  | Which os to run on |
