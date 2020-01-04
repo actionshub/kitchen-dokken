@@ -8,7 +8,7 @@ async function main() {
     const suite = core.getInput('suite')
     const dokkenYaml = core.getInput('kitchenLocalYaml') || 'kitchen.dokken.yml'
 
-    await exec.exec(`kitchen test ${suite}-${os}`, [], {env: { 'CHEF_LICENSE': 'accept-no-persist', 'KITCHEN_LOCAL_YAML': dokkenYaml }})
+    await exec.exec(`kitchen test ${suite}-${os}`, [], {})
   } catch (error){
     core.setFailed(error.message);
   }
