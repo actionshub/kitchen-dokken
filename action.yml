@@ -1,6 +1,6 @@
-name: 'Chef Install'
+name: 'Kitchen Dokken'
 author: 'Jason Field'
-description: 'Installs Chef on your linux build agent with ease'
+description: 'Run Test Kitchen with Dokken easily'
 inputs:
   suite:
     description: 'Which suite to run'
