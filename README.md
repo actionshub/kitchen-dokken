@@ -1,4 +1,4 @@
-# chef-install
+# kitchen-dokken
 
 [![CI State](https://github.com/actionshub/kitchen-dokken/workflows/release/badge.svg)](https://github.com/actionshub/kitchen-dokken)
 
