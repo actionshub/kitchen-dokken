@@ -25,9 +25,9 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Install Chef
-      uses: actionshub/chef-install@master
+      uses: actionshub/chef-install@main
     - name: Dokken
       uses: actionshub/kitchen-dokken@creation
       env:
