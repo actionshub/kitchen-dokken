@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.0.1 - *2020-12-11*
 
 - Bump @actions/core from 1.2.0 to 1.2.6
 
